@@ -21,7 +21,7 @@ The purpose of my program is to use the dataset to look for correlations between
 
 I downloaded the dataset from Kaggle.com as a .CSV file. The file needed to be converted to a Pandas object for use within Python. Then, using various data filters, sorts, aggrations, and conversions, I was able to format my data to be presented visual through graphs and charts.
 
-I used the Pandas module with Python to analyze the dataset and display the results.
+I used the Pandas and Matplotlib modules with Python3 to analyze the dataset and display the results.
 
 # Useful Websites
 
