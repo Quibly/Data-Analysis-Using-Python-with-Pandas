@@ -29,7 +29,6 @@ class control:
                 self._exit = True
             else:
                 self._actions.use_input(self._command)
-                self._exit = True
 
     def _display_menu(self):
         """
