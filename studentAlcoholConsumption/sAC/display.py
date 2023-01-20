@@ -25,14 +25,52 @@ class display:
         """
         match option:
             case '1':
+                x = ''
+                y = ''
+                kind = ''
+                title = ''
+                xlabel = ''
+                ylabel = ''
                 df = pd.DataFrame(self._display1)
+                df.sort_values("Walc", axis=0, ascending=True, na_position='first')
+                df.where(df["G1"]>0)
                 df.plot()
             case '2':
                 df = pd.DataFrame(self._display2)
                 df.plot()
             case '3':
                 df = pd.DataFrame(self._display3)
-                df.plot()
+                df['Talc'] = df['Dalc']+df['Walc']
+                df.sort_values("Talc", axis=0, ascending=True, inplace=True, na_position='first')
+                TalcList = list(set(df['Talc'].tolist()))
+                dsl = pd.DataFrame(TalcList)
+                df = df[['famrel','Talc']]
+                countList = []
+                famCountList = []
+                famrelList = []
+                for item in TalcList:
+                    countList.append(len(df[df['Talc'] == item]))
+                for i in range(5):
+                    famCountList.append(len(df[df['famrel'] == (i+1)]))
+                    famrelList.append(df.where(df['famrel'] == (i+1)).sum())
+                print(TalcList)
+                print(countList)
+                print(famCountList)
+                print(famrelList)
+                
+                dff = pd.DataFrame(famrelList)
+                # dff.set_index(pd.Index([1,2,3,4,5]))
+                # df = df[['famrel','Talc']]
+                # df = df.where(df['famrel'] == 5)
+                # df['percent'] = (df['famrel'] / df['famrel'].sum()) * 100
+
+                #This plot returns a pie graph showing proportions of student famrel ratings.
+                dff.plot(kind='pie' , y='famrel', labels =[1,2,3,4,5])
+                dff.plot(kind='box')
+
+                #This plot returns a pie graph showing proportions of student Talc ratings
+                #per range of famrel ratings.
+                dff.plot(kind='pie' , y='Talc', labels = [1,2,3,4,5])
         plt.show()
     
     def _init_display(self, option):
