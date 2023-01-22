@@ -29,6 +29,9 @@ I used the Pandas and Matplotlib modules with Python3 to analyze the dataset and
 
 * [pandas.pydata.org](https://pandas.pydata.org/docs/user_guide/10min.html)
 * [Kaggle.com](https://www.kaggle.com/datasets/uciml/student-alcohol-consumption)
+* [geeksforgeeks.org](https://www.geeksforgeeks.org/)
+* [matplotlib.org](https://matplotlib.org/)
+* [stackoverflow.com](https://stackoverflow.com/)
 
 # Future Work
 
