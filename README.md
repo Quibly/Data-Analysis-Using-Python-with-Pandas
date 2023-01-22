@@ -9,9 +9,7 @@ https://www.kaggle.com/datasets/uciml/student-alcohol-consumption
 
 The purpose of my program is to use the dataset to look for correlations between alcohol consumption and lower grades, free time and going out times, and family size.
 
-{Provide a link to your YouTube demonstration.  It should be a 4-5 minute demo of the data set, the questions and answers, the code running and a walkthrough of the code.}
-
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://youtu.be/SGlRqvZ0V-g)
 
 # Data Analysis Results
 
