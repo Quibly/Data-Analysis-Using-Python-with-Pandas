@@ -50,7 +50,6 @@ class display:
                 df = df.groupby('Free').agg(Freetime=('Talc', 'mean'))
                 df = df.reset_index(drop=True)
                 df.plot()
-                print(df)
             case '3':
                 df = pd.DataFrame(self._display3)
                 df['Talc'] = df['Dalc']+df['Walc']
