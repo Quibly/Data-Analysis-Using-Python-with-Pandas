@@ -56,7 +56,7 @@ class display:
                 df = df[['famsize', 'Talc']]
                 df = df.groupby('famsize').agg(Alcohol_avg=('Talc', 'mean'))
                 df = df.reset_index(drop=True)
-                df = df.rename(index={0: "<=3", 1: ">3"})
+                df = df.rename(index={0: ">3", 1: "<=3"})
                 df.plot(kind='bar', xlabel='Family Size')
         plt.show()
     
