@@ -22,55 +22,43 @@ class display:
     def get_display(self, option):
         """
         Module to return the plot data for the chosen display
+        Case 1: comparing alcohol consumption to grades
+        Case 2: comparing alcohol consumption to free time and going out
+        Case 3: comparing alcohol consumption to family size
         """
         match option:
             case '1':
-                x = ''
-                y = ''
-                kind = ''
-                title = ''
-                xlabel = ''
-                ylabel = ''
                 df = pd.DataFrame(self._display1)
-                df.sort_values("Walc", axis=0, ascending=True, na_position='first')
-                df.where(df["G1"]>0)
-                df.plot()
+                df['Talc'] = df['Dalc']+df['Walc']
+                df['Grades'] = df['G1']+df['G2']+df['G3']
+                df = df[['Talc', 'Grades']]
+                df = df.where(df['Grades'] > 10)
+                df = df.sort_values(by=['Talc'])
+                df = df.reset_index(drop=True)
+                df = df.groupby('Talc').agg(Grades=('Grades', 'mean'))
+                df.plot(xlabel='Total Alcohol Consumption', ylabel='Averge Grades', color='r', title='Grades by Alcohol Consuption', linewidth='5')
             case '2':
                 df = pd.DataFrame(self._display2)
+                df['Talc'] = df['Dalc']+df['Walc']
+                df['Free'] = df['freetime']+df['goout']
+                df = df[['Free', 'Talc']]
+                fig, axes = plt.subplots(nrows=2, ncols=1)
+                df = df.sort_values(by=['Free'])
+                df = df.reset_index(drop=True)
+                df['Free'].plot(ax=axes[0])
+                df['Talc'].plot(ax=axes[1])
+                df = df.groupby('Free').agg(Freetime=('Talc', 'mean'))
+                df = df.reset_index(drop=True)
                 df.plot()
+                print(df)
             case '3':
                 df = pd.DataFrame(self._display3)
                 df['Talc'] = df['Dalc']+df['Walc']
-                df.sort_values("Talc", axis=0, ascending=True, inplace=True, na_position='first')
-                TalcList = list(set(df['Talc'].tolist()))
-                dsl = pd.DataFrame(TalcList)
-                df = df[['famrel','Talc']]
-                countList = []
-                famCountList = []
-                famrelList = []
-                for item in TalcList:
-                    countList.append(len(df[df['Talc'] == item]))
-                for i in range(5):
-                    famCountList.append(len(df[df['famrel'] == (i+1)]))
-                    famrelList.append(df.where(df['famrel'] == (i+1)).sum())
-                print(TalcList)
-                print(countList)
-                print(famCountList)
-                print(famrelList)
-                
-                dff = pd.DataFrame(famrelList)
-                # dff.set_index(pd.Index([1,2,3,4,5]))
-                # df = df[['famrel','Talc']]
-                # df = df.where(df['famrel'] == 5)
-                # df['percent'] = (df['famrel'] / df['famrel'].sum()) * 100
-
-                #This plot returns a pie graph showing proportions of student famrel ratings.
-                dff.plot(kind='pie' , y='famrel', labels =[1,2,3,4,5])
-                dff.plot(kind='box')
-
-                #This plot returns a pie graph showing proportions of student Talc ratings
-                #per range of famrel ratings.
-                dff.plot(kind='pie' , y='Talc', labels = [1,2,3,4,5])
+                df = df[['famsize', 'Talc']]
+                df = df.groupby('famsize').agg(Alcohol_avg=('Talc', 'mean'))
+                df = df.reset_index(drop=True)
+                df = df.rename(index={0: "<=3", 1: ">3"})
+                df.plot(kind='bar', xlabel='Family Size')
         plt.show()
     
     def _init_display(self, option):

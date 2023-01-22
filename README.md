@@ -15,7 +15,9 @@ The purpose of my program is to use the dataset to look for correlations between
 
 # Data Analysis Results
 
-{List the questions and the answers you found by doing this analysis.}
+* Question 1: What does a comparison of alcohol consumption to grades look like? Answer: There seems to be a slight trend. Grades came down a bit the more alcohol was consumed.
+* Question 2: What does a comparison of alcohol consumption to free time look like? Answer: There seems to be a substantial trend. Alcohol consumptino went way up as more free time was available.
+* Question 3: What does a comparison of alcohol consumption to family size look like? Answer: There is a slight difference. The average didn't change much.
 
 # Development Environment
 
@@ -30,7 +32,6 @@ I used the Pandas and Matplotlib modules with Python3 to analyze the dataset and
 
 # Future Work
 
-{Make a list of things that you need to fix, improve, and add in the future.}
-* Item 1
-* Item 2
-* Item 3
+* I want to improve the layout and colors of some of the charts.
+* I need figure out how to change the tick labels on the charts.
+* Incorporating the outputs into an organized web display would be fun.
